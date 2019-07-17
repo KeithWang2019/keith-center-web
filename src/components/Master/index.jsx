@@ -4,7 +4,7 @@ function Master(props) {
     return (
         <div>
             <div>
-                header
+                header 1
             </div>
             <div>
                 {props.children}
