@@ -8,19 +8,7 @@ const TodoList = React.lazy(() => import('components/TodoList'));
 const XxxList = React.lazy(() => import('components/XxxList'));
 
 const App = () => (
-    <Router>
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+    <Router>        
         <Suspense fallback={<div>Loading...</div>}>
             <Switch>
                 <Route exact path="/" component={TodoList} />

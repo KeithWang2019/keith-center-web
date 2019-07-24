@@ -1,5 +1,205 @@
-.my{
-    border:1px solid red;
-    width: 100px;
-    height: 100px;;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+$leftWidth: 208px;
+$minWidth: 1200px;
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  min-width: $minWidth;
+}
+
+.top {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  z-index: 3;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+
+  .head-container {
+    .logo {
+      background: url(./img/logo.png) no-repeat;
+      width: 208px;
+      height: 50px;
+    }
+  }
+}
+
+.middle {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50px;
+  bottom: 0px;
+
+  .left {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 2;
+    overflow: hidden;
+    overflow-y: auto;
+
+    width: $leftWidth;
+    min-height: 50px;
+    background-color: #f5f5f5;
+
+    .quick-navigation {
+      height: 900px;
+    }
+  }
+
+  .right {
+    box-sizing: border-box;
+    position: absolute;
+    left: $leftWidth;
+    width: auto;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+
+    min-height: 50px;
+    background-color: #ffffff;
+  }
 }

@@ -1,19 +1,48 @@
 import React from 'react';
 
-function Master(props) {
-    return (
-        <div>
+import { connect } from 'react-redux';
+
+import { loadQuickNavigation } from 'store/actions/master';
+import QuickNavigation from './QuickNavigation';
+
+class Master extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.loadQuickNavigation();
+    }
+
+    render() {
+        return (
             <div>
-                header 1
+                <div className="wrapper top">
+                    <div className="head-container">
+                        <div className="logo"></div>
+                    </div>
+                </div>
+                <div>
+                    <div className="wrapper middle">
+                        <div className="left">
+                            <QuickNavigation></QuickNavigation>
+                        </div>
+                        <div className="right">{this.props.children}</div>
+                    </div>
+                </div>
+                <div className="wrapper bottom"></div>
             </div>
-            <div>
-                {props.children}
-            </div>
-            <div>
-                footer
-            </div>
-        </div>
-    );
+        )
+    }
 }
 
-export default Master;
+const mapDispatchToProps = dispatch => ({
+    loadQuickNavigation: id => {
+        dispatch(loadQuickNavigation()).then(() => {
+            console.log("导航加载完成");
+        });
+    }
+});
+
+export default connect(null, mapDispatchToProps)(Master);

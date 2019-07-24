@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { test, toggleTodo } from 'store/actions/index';
+// import { test, toggleTodo } from 'store/actions/index';
+import { loadQuickNavigation } from 'store/actions/master';
 
 import Master from 'components/Master';
 
@@ -39,7 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     myClick: id => {
-        dispatch(test()).then(() => {
+        dispatch(loadQuickNavigation()).then(() => {
             alert("ok");
         });
     }
