@@ -3,14 +3,26 @@ const quickNavigationItems = (state = [], action) => {
         case "loadQuickNavigation":
             return [
                 {
+                    type: "group",
+                    to: "/hello",
+                    label: "组1",
+                },
+                {
                     label: "主机",
-                    to: "/",
-                    activeOnlyWhenExact: true
+                    to: "/hello/d"
+                },
+                {
+                    label: "主机",
+                    to: "/hello/e"
+                },
+                {
+                    type: "group",
+                    to: "/about",
+                    label: "组2",
                 },
                 {
                     label: "主机2",
-                    to: "/about",
-                    activeOnlyWhenExact: false
+                    to: "/about/c"
                 }
             ];
         default:

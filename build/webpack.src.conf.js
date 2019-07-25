@@ -16,7 +16,8 @@ function init(env) {
         },
         output: {
             path: resolveApp('dist'),
-            filename: '[name]_[hash].js'
+            filename: '[name]_[hash].js',
+            publicPath: "/"
         },
         optimization: {
             minimize: env.mode == "development" ? false : true
@@ -35,7 +36,20 @@ function init(env) {
             new webpack.DllReferencePlugin({
                 manifest: require(resolveApp('dist/vendor_manifest.json'))
             })
-        ]
+        ],
+        devServer: {
+            port: 7001,
+            contentBase: resolveApp('dist'),
+            disableHostCheck: false,
+            inline: true,
+            hot: true,
+            open: true,
+            publicPath: "/",
+            historyApiFallback: {
+                index: '/index.html'//index.html为当前目录创建的template.html
+            },
+            host: '127.0.0.1'
+        },
     });
     return webpackConfig;
 }

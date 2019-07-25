@@ -7,7 +7,7 @@ export const masterAction = id => ({
 //action 访问
 export function loadQuickNavigation() {
     return function (dispatch) {
-        dispatch(masterAction(1));
+        dispatch(masterAction(2));
 
         return new Promise((y, x) => {
             y("hello");

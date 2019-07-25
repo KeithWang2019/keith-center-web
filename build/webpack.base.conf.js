@@ -9,7 +9,7 @@ module.exports = {
     mode: "source-map",
     entry: {
     },
-    output: {
+    output: {        
     },
     resolve: {
         alias: {
@@ -113,19 +113,7 @@ module.exports = {
             filename: "[name].dll.css",
             chunkFilename: "[id].css"
         })
-    ],
-    devServer: {
-        port: 7001,
-        contentBase: resolveApp('dist'),
-        disableHostCheck: true,
-        inline: true,
-        hot: true,
-        open: true,
-        historyApiFallback: {
-            index: '/index.html'//index.html为当前目录创建的template.html
-        },
-        host: '0.0.0.0'
-    },
+    ],    
     node: {
         dgram: 'empty',
         fs: 'empty',

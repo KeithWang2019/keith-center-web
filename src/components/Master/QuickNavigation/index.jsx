@@ -1,22 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, matchPath } from "react-router-dom";
 
 import { connect } from 'react-redux';
 
-function QuickNavigationItem({ label, to, activeOnlyWhenExact }) {
-    return (
-        <Route
-            path={to}
-            exact={activeOnlyWhenExact}
-            children={({ match }) => (
-                <div className={match ? "active" : ""}>
-                    {match ? ">" : ""}
-                    <Link to={to}>{label
-                    }</Link>
-                </div>
-            )}
-        />
-    );
+function QuickNavigationItem({ to, type, label }) {
+    switch (type) {
+        case "group":
+            const match = matchPath(document.location.pathname, {
+                path: to,
+                exact: false,
+                strict: false
+            });
+
+            return (
+                <div className={match ? "open" : ""}>{match ? ">" : ""}{label}</div>
+            );
+        default:
+            return (
+                <Route
+                    path={to}
+                    exact={true}
+                    children={({ match }) => (
+                        <div className={match ? "active" : ""}>
+                            {match ? ">" : ""}
+                            <Link to={to}>{label
+                            }</Link>
+                        </div>
+                    )}
+                />
+            );
+    }
 }
 
 function QuickNavigation(props) {
@@ -24,8 +37,8 @@ function QuickNavigation(props) {
     return (
         <div className="quick-navigation">
             {
-                quickNavigation.map((item) =>
-                    <QuickNavigationItem to={item.to} label={item.label} activeOnlyWhenExact={item.activeOnlyWhenExact} key={item.to} />
+                quickNavigation.map((item, index) =>
+                    <QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} />
                 )
             }
         </div>
