@@ -9,13 +9,14 @@ module.exports = {
     mode: "source-map",
     entry: {
     },
-    output: {        
+    output: {
     },
     resolve: {
         alias: {
             'store': resolveApp('src/store'),
             'css': resolveApp('src/components/css'),
-            'components': resolveApp('src/components')
+            'components': resolveApp('src/components'),
+            'common': resolveApp('src/common')
         },
         extensions: ['.js', '.json', '.jsx', '.css']
     },
@@ -113,7 +114,7 @@ module.exports = {
             filename: "[name].dll.css",
             chunkFilename: "[id].css"
         })
-    ],    
+    ],
     node: {
         dgram: 'empty',
         fs: 'empty',

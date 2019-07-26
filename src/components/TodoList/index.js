@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// import { test, toggleTodo } from 'store/actions/index';
-import { loadQuickNavigation } from 'store/actions/master';
+import { test } from 'store/actions/index';
 
 import Master from 'components/Master';
 
@@ -25,8 +24,8 @@ class TodoList extends React.Component {
             <Master>
                 <ul onClick={this.props.myClick} className="my">
                     <h1>{this.state.date.toLocaleTimeString()}</h1>
-                    {this.props.todos.map(todo => (
-                        <div key={todo}>{todo}==11</div>
+                    {this.props.todos.map((todo,index) => (
+                        <div key={index}>{todo}==11</div>
                     ))}
                 </ul>
             </Master>
@@ -40,8 +39,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     myClick: id => {
-        dispatch(loadQuickNavigation()).then(() => {
-            alert("ok");
+        dispatch(test()).then((r) => {
+            console.log(r);
         });
     }
 });

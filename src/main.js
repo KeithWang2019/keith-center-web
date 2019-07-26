@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import axios from 'common/config-axios';
 
 import 'css/main.scss';
 import App from './App';

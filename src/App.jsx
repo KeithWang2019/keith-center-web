@@ -16,7 +16,7 @@ const App = () => (
                 <Route exact path="/" component={Home} />
                 <Route path="/hello/d" component={TodoList} />
                 <Route path="/hello/e" component={TodoList} />
-                <Route path="/about/c" component={XxxList} />
+                <Route path="/about/b/c" component={XxxList} />
                 <Route component={NoMatch} />
             </Switch>
         </Suspense>
