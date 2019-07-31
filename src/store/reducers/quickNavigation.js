@@ -8,11 +8,12 @@ const quickNavigationItems = (state = [], action) => {
                     label: "组1",
                     child: [
                         {
-                            label: "主机",
-                            to: "/hello/d"
+                            label: "主机1",
+                            to: "/hello/d",
+                            icon: "#cac-database-fill"
                         },
                         {
-                            label: "主机",
+                            label: "主机2",
                             to: "/hello/e"
                         }
                     ]

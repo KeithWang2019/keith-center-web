@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { loadQuickNavigation } from 'store/actions/master';
 import QuickNavigation from './QuickNavigation';
+import UserPanel from './UserPanel';
 
 class Master extends React.Component {
 
@@ -26,6 +27,7 @@ class Master extends React.Component {
                 <div>
                     <div className="wrapper middle">
                         <div className="left">
+                            <UserPanel></UserPanel>
                             <QuickNavigation></QuickNavigation>
                         </div>
                         <div className="right">{this.props.children}</div>

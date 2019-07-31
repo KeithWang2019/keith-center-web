@@ -1,136 +1,21 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
 html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+body {
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+    Helvetica Neue, Helvetica, Arial, simsun, sans-serif;
+  font-size: 12px;
+}
+
+.cac-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 $leftWidth: 208px;
@@ -177,14 +62,76 @@ $minWidth: 1200px;
     left: 0px;
     z-index: 2;
     overflow: hidden;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 
     width: $leftWidth;
-    min-height: 50px;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dedede;
+    // box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+
+    .user-panel {
+      height: 50px;
+      width: 100%;
+      border-bottom: 1px solid #ffffff;
+    }
 
     .quick-navigation {
-      height: 900px;
+      width: 100%;
+      overflow-y: auto;
+      font-size: 14px;
+      flex-grow: 1;
+      border-top: 1px solid #dedede;
+
+      .quick-nav {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+          background-color: #ebebeb;
+          color: #ff6a00;
+
+          a {
+            color: #ff6a00;
+            text-decoration: none;
+          }
+        }
+
+        &.quick-nav-item {
+          &.active {
+            background-color: #ebebeb;
+            color: #ff6a00;
+
+            a {
+              color: #ff6a00;
+              text-decoration: none;
+            }
+          }
+        }
+
+        .cac-icon {
+          margin-right: 10px;
+        }
+
+        a {
+          color: #333;
+          text-decoration: none;
+          line-height: 1;
+        }
+      }
+
+      .quick-nav-group-list {
+        &.open {
+
+        }
+
+        &.close {
+          height: 0px;
+          overflow: hidden;
+        }
+      }
     }
   }
 
@@ -198,6 +145,7 @@ $minWidth: 1200px;
     right: 0px;
     overflow: hidden;
     overflow-y: auto;
+    z-index: 1;
 
     min-height: 50px;
     background-color: #ffffff;

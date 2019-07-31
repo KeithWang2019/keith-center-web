@@ -34,13 +34,26 @@ module.exports = {
                                 ['@babel/preset-env'],
                                 ['@babel/preset-react']
                             ],
-                            plugins: ["@babel/plugin-syntax-dynamic-import"]
+                            plugins: ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-proposal-class-properties"]
                         }
                     }
                 ]
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.(png|jpg|gif|svg)$/i,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 1,
+                            name: 'img/[name].[hash:7].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
                     {

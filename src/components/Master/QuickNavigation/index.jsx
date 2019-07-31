@@ -4,42 +4,68 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-function QuickNavigationItem({ to, type, label, child, level }) {
-    switch (type) {
-        case "group":
-            const match = matchPath(document.location.pathname, {
-                path: to,
-                exact: false,
-                strict: false
-            });
+class QuickNavigationItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        };
+    }
+
+    handleClick = () => {
+        this.setState(state => ({
+            open: !state.open
+        }));
+    }
+
+    isOpen() {
+        const match = matchPath(document.location.pathname, {
+            path: this.props.to,
+            exact: false,
+            strict: false
+        });
+
+        return match || this.state.open;
+    }
+
+    render() {
+        switch (this.props.type) {
+            case "group":
 
 
-            const listItems = child && child.map((item, index) => {
-                return (<QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} child={item.child} level={level + 1} />)
-            });
 
-            return (
-                <div>
-                    <div className={classNames("quick-nav", "quick-nav-group", { "open": match })} style={{ paddingLeft: level * 12 }}>{label}</div>
-                    {listItems &&
-                        <div>
-                            {listItems}
+                const listItems = this.props.child && this.props.child.map((item, index) => {
+                    return (<QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} child={item.child} level={this.props.level + 1} icon={item.icon} />)
+                });
+
+                return (
+                    <div>
+                        <div className={classNames("quick-nav", "quick-nav-group", { "open": this.isOpen(), "close": !this.isOpen() })} style={{ paddingLeft: this.props.level * 12 }} onClick={this.handleClick}>
+                            <svg className="cac-icon" style={{ fontSize: 16 }} aria-hidden="true"><use xlinkHref={classNames({ '#cac-folder': !this.isOpen(), '#cac-folder-open': this.isOpen() })}></use></svg>
+                            <a>{this.props.label}</a>
                         </div>
-                    }
-                </div>
-            );
-        default:
-            return (
-                <Route
-                    path={to}
-                    exact={true}
-                    children={({ match }) => (
-                        <div className={classNames("quick-nav", "quick-nav-item", { "active": match })} style={{ paddingLeft: level * 12 }}>
-                            <Link to={to}>{label}</Link>
-                        </div>
-                    )}
-                />
-            );
+                        {
+                            listItems &&
+                            <div className={classNames("quick-nav-group-list", { "open": this.isOpen(), "close": !this.isOpen() })}>
+                                {listItems}
+                            </div>
+                        }
+                    </div >
+                );
+            default:
+                return (
+                    <Route
+                        path={this.props.to}
+                        exact={true}
+                        children={({ match }) => (
+                            <div className={classNames("quick-nav", "quick-nav-item", { "active": match })} style={{ paddingLeft: this.props.level * 12 }}>
+                                <svg className="cac-icon" style={{ fontSize: 16 }} aria-hidden="true"><use xlinkHref={this.props.icon}></use></svg><Link to={this.props.to}>{this.props.label}</Link>
+                            </div>
+                        )}
+                    />
+                );
+        }
     }
 }
 
@@ -50,7 +76,7 @@ function QuickNavigation(props) {
         <div className="quick-navigation">
             {
                 quickNavigation.map((item, index) => {
-                    return (<QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} child={item.child} level={1} />)
+                    return (<QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} child={item.child} level={1} icon={item.icon} />)
                 })
             }
         </div>
