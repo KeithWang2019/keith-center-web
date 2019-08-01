@@ -14,7 +14,8 @@ const quickNavigationItems = (state = [], action) => {
                         },
                         {
                             label: "主机2",
-                            to: "/hello/e"
+                            to: "/hello/e",
+                            icon: "#cac-database"
                         }
                     ]
                 },

@@ -32,19 +32,18 @@ class QuickNavigationItem extends React.Component {
     render() {
         switch (this.props.type) {
             case "group":
-
-
-
                 const listItems = this.props.child && this.props.child.map((item, index) => {
                     return (<QuickNavigationItem to={item.to} label={item.label} type={item.type} key={index} child={item.child} level={this.props.level + 1} icon={item.icon} />)
                 });
 
                 return (
                     <div>
-                        <div className={classNames("quick-nav", "quick-nav-group", { "open": this.isOpen(), "close": !this.isOpen() })} style={{ paddingLeft: this.props.level * 12 }} onClick={this.handleClick}>
-                            <svg className="cac-icon" style={{ fontSize: 16 }} aria-hidden="true"><use xlinkHref={classNames({ '#cac-folder': !this.isOpen(), '#cac-folder-open': this.isOpen() })}></use></svg>
-                            <a>{this.props.label}</a>
-                        </div>
+                        <a>
+                            <div className={classNames("quick-nav", "quick-nav-group", { "open": this.isOpen(), "close": !this.isOpen() })} style={{ paddingLeft: this.props.level * 12 }} onClick={this.handleClick}>
+                                <svg className="cac-icon" style={{ fontSize: 16 }} aria-hidden="true"><use xlinkHref={classNames({ '#cac-folder': !this.isOpen(), '#cac-folder-open': this.isOpen() })}></use></svg>
+                                <span>{this.props.label}</span>
+                            </div>
+                        </a>
                         {
                             listItems &&
                             <div className={classNames("quick-nav-group-list", { "open": this.isOpen(), "close": !this.isOpen() })}>
@@ -59,9 +58,11 @@ class QuickNavigationItem extends React.Component {
                         path={this.props.to}
                         exact={true}
                         children={({ match }) => (
-                            <div className={classNames("quick-nav", "quick-nav-item", { "active": match })} style={{ paddingLeft: this.props.level * 12 }}>
-                                <svg className="cac-icon" style={{ fontSize: 16 }} aria-hidden="true"><use xlinkHref={this.props.icon}></use></svg><Link to={this.props.to}>{this.props.label}</Link>
-                            </div>
+                            <Link to={this.props.to}>
+                                <div className={classNames("quick-nav", "quick-nav-item", { "active": match })} style={{ paddingLeft: this.props.level * 12 }}>
+                                    <svg className="cac-icon" style={{ fontSize: 14 }} aria-hidden="true"><use xlinkHref={this.props.icon}></use></svg><span>{this.props.label}</span>
+                                </div>
+                            </Link>
                         )}
                     />
                 );

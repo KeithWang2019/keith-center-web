@@ -92,39 +92,30 @@ $minWidth: 1200px;
         &:hover {
           background-color: #ebebeb;
           color: #ff6a00;
-
-          a {
-            color: #ff6a00;
-            text-decoration: none;
-          }
         }
 
         &.quick-nav-item {
           &.active {
             background-color: #ebebeb;
-            color: #ff6a00;
-
-            a {
-              color: #ff6a00;
-              text-decoration: none;
-            }
+            color: #ff6a00;        
           }
         }
 
         .cac-icon {
           margin-right: 10px;
         }
+      }
 
-        a {
-          color: #333;
-          text-decoration: none;
-          line-height: 1;
-        }
+      a {
+        color: #333;
+        text-decoration: none;
+        line-height: 1;
+        cursor: pointer;
+        user-select: none;
       }
 
       .quick-nav-group-list {
         &.open {
-
         }
 
         &.close {
