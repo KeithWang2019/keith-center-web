@@ -1,7 +1,10 @@
+import { matchPath } from "react-router-dom";
+
 const quickNavigationItems = (state = [], action) => {
+    let items = null;
     switch (action.type) {
         case "loadQuickNavigation":
-            return [
+            items = [
                 {
                     type: "group",
                     to: "/hello",
@@ -43,8 +46,38 @@ const quickNavigationItems = (state = [], action) => {
                     ]
                 }
             ];
+            traversal(items, action.path, true);
+            return Object.assign(items, state);
+        case "openQuickNavigation":
+            items = JSON.parse(JSON.stringify(state));
+            traversal(items, action.path, action.open);
+            return items;
         default:
             return state;
+    }
+}
+
+function traversal(items, path, open) {
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+
+        const match = matchPath(document.location.pathname, {
+            path: item.to,
+            exact: false,
+            strict: false
+        });
+
+        if (match) {
+            item.open = true;
+        }
+
+        if (path == item.to) {
+            item.open = open;
+        }
+
+        if (item.child) {
+            traversal(item.child, path, open);
+        }
     }
 }
 

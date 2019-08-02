@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { test } from 'store/actions/index';
 
-import Master from 'components/Master';
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -21,14 +20,12 @@ class TodoList extends React.Component {
 
     render() {
         return (
-            <Master>
-                <ul onClick={this.props.myClick} className="my">
-                    <h1>{this.state.date.toLocaleTimeString()}</h1>
-                    {this.props.todos.map((todo,index) => (
-                        <div key={index}>{todo}==11</div>
-                    ))}
-                </ul>
-            </Master>
+            <ul onClick={this.props.myClick} className="my">
+                <h1>{this.state.date.toLocaleTimeString()}</h1>
+                {this.props.todos.map((todo, index) => (
+                    <div key={index}>{todo}==11</div>
+                ))}
+            </ul>
         );
     }
 }

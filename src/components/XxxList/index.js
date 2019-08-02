@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 
 import { test, toggleTodo } from 'store/actions/index2';
 
-import Master from 'components/Master';
-
 const TodoList = ({ xxx, myClick }) => (
-    <Master>
-        <ul onClick={myClick} className="my">
-            {xxx.map(todo => (
-                <div key={todo}>{todo}</div>
-            ))}
-        </ul>
-    </Master>
+    <ul onClick={myClick} className="my">
+        {xxx.map(todo => (
+            <div key={todo}>{todo}</div>
+        ))}
+    </ul>
 )
 
 const mapStateToProps = state => ({

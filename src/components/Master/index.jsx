@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import { loadQuickNavigation } from 'store/actions/master';
 import QuickNavigation from './QuickNavigation';
 import UserPanel from './UserPanel';
+
+import Home from 'components/Home';
+import NoMatch from 'components/NoMatch';
+const TodoList = React.lazy(() => import('components/TodoList'));
+const XxxList = React.lazy(() => import('components/XxxList'));
 
 class Master extends React.Component {
 
@@ -13,7 +19,7 @@ class Master extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadQuickNavigation();
+        this.props.loadQuickNavigation(document.location.pathname);
     }
 
     render() {
@@ -26,11 +32,23 @@ class Master extends React.Component {
                 </div>
                 <div>
                     <div className="wrapper middle">
-                        <div className="left">
-                            <UserPanel></UserPanel>
-                            <QuickNavigation></QuickNavigation>
-                        </div>
-                        <div className="right">{this.props.children}</div>
+                        <Router>
+                            <div className="left">
+                                <UserPanel></UserPanel>
+                                <QuickNavigation></QuickNavigation>
+                            </div>
+                            <div className="right">
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <Switch>
+                                        <Route exact path="/" component={Home} />
+                                        <Route path="/hello/d" component={TodoList} />
+                                        <Route path="/hello/e" component={TodoList} />
+                                        <Route path="/about/b/c" component={XxxList} />
+                                        <Route component={NoMatch} />
+                                    </Switch>
+                                </Suspense>
+                            </div>
+                        </Router>
                     </div>
                 </div>
                 <div className="wrapper bottom"></div>
@@ -40,8 +58,8 @@ class Master extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    loadQuickNavigation: id => {
-        dispatch(loadQuickNavigation()).then(() => {
+    loadQuickNavigation: path => {
+        dispatch(loadQuickNavigation(path)).then(() => {
             console.log("导航加载完成");
         });
     }

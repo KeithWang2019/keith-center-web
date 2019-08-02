@@ -48,7 +48,7 @@ function init(env) {
             historyApiFallback: {
                 index: '/index.html'//index.html为当前目录创建的template.html
             },
-            host: '127.0.0.1'
+            host: '100.5.8.54'
         },
     });
     return webpackConfig;
